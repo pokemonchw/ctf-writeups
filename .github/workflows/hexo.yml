@@ -1,34 +1,21 @@
-name: Deploy Hexo site to GitHub Pages
-
+name: Deploy Hexo to GitHub Pages
 on:
   push:
-    branches: [main]          # 只有 main 分支变动才触发
-  workflow_dispatch:          # GitHub 界面手动触发
-
+    branches: [main]
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    # 2️⃣ 配置 Node（Hexo 依赖）
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
-        node-version: 20          # 可换 18/22，保持 LTS 即可
-        cache: 'npm'              # 自动缓存 ~/.npm
-
-    # 3️⃣ 安装依赖（package.json + 主题依赖）
-    - run: npm ci                 # 没有 lock 文件就改用 `npm install`
-
-    # 4️⃣ 生成静态文件
-    - name: Build
-      run: npx hexo generate      # 或 `npm run build`，依你 scripts 而定
-
-    # 5️⃣ 发布到 gh-pages
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v4
+        node-version: 20
+    - run: npm install
+    - run: npx hexo g        # 生成到 public/
+    - uses: peaceiris/actions-gh-pages@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}   # GitHub 自动注入
-        publish_dir: ./public                       # Hexo 默认输出目录
-        keep_files: false                           # 全量覆盖旧文件
-
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
